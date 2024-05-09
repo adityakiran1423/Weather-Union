@@ -5,9 +5,13 @@ import json
 def main() -> None:
     print("1. Fetch current weather data for a given latitude and longitude")
     print("2. Fetch current weather data in a locality/city")
+    print()
     while True:
         choice = int(input("Enter which current data do you require (1 or 2): "))
+        print()
         if choice in [1, 2]:
+            print(f"You have entered option {choice}.")
+            print()
             data_fetcher(choice)
             break
         else:
@@ -28,7 +32,7 @@ def data_fetcher(choice) -> None:
         api_handler(choice, region, 0)
 
 
-def api_handler(choice, latitude, longitude):
+def api_handler(choice, latitude, longitude) -> None:
     headers = {"x-zomato-api-key": "ce3682540ecbf4ea14725372560c35a1"}
     if choice == 1:
         # url = f"https://weatherunion.com/gw/weather/external/v0/get_weather_data?latitude={latitude}&longitude={longitude}"
@@ -42,7 +46,7 @@ def api_handler(choice, latitude, longitude):
         data_handler(response)
 
 
-def data_handler(api_response):
+def data_handler(api_response) -> None:
     print(json.dumps(api_response.json(), indent=2))
 
 
